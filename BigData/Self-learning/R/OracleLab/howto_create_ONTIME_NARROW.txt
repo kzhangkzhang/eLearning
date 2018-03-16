@@ -1,0 +1,83 @@
+This file is the snapshot for me to manually create ONTIME and NARROW table
+in RQUSER schema in 12c DB in this VM ....
+
+I have created a thread for this issue:
+
+https://community.oracle.com/message/14523190#14523190
+
+
+
+[oracle@bigdatalite Learning]$ cd R
+[oracle@bigdatalite R]$ ls
+example.R  export_data_from_R_Example.txt  ORE.RData  sample.csv
+[oracle@bigdatalite R]$ pwd
+/home/oracle/Kevin/Learning/R
+[oracle@bigdatalite R]$ ls
+example.R  export_data_from_R_Example.txt  ORE.RData  sample.csv
+[oracle@bigdatalite R]$ R
+
+Oracle Distribution of R version 3.2.0  (--) -- "Full of Ingredients"
+Copyright (C)  The R Foundation for Statistical Computing
+Platform: x86_64-unknown-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+You are using Oracle's distribution of R. Please contact
+Oracle Support for any problems you encounter with this
+distribution.
+
+[Previously saved workspace restored]
+
+> load("/home/oracle/Kevin/Learning/R/ORE.RData")
+> ls()
+ [1] "a"            "b"            "c"            "df1"          "myMean"      
+ [6] "myWorkingDir" "narrow"       "ontime"       "option"       "vtr"         
+[11] "X"           
+> class(narrow)
+[1] "data.frame"
+> class(ontime)
+[1] "data.frame"
+> ore.create(narrow, "NARROW")
+Error: could not find function "ore.create"
+> library("ORE")
+Loading required package: OREbase
+Loading required package: OREcommon
+
+Attaching package: ‘OREbase’
+
+The following objects are masked from ‘package:base’:
+
+    cbind, data.frame, eval, interaction, order, paste, pmax, pmin,
+    rbind, table
+
+Loading required package: OREembed
+Loading required package: OREstats
+Loading required package: MASS
+Loading required package: OREgraphics
+Loading required package: OREeda
+Loading required package: OREmodels
+Loading required package: OREdm
+Loading required package: lattice
+Loading required package: OREpredict
+Loading required package: ORExml
+> ore.create(narrow, "NARROW")
+Error in ore.create(narrow, "NARROW") : attempt to apply non-function
+> ore.connect("RQUSER", "orcl", "localhost", "welcome1", 1521)
+> ore.create(narrow, "NARROW")
+> ore.create(ontime, "ONTIME")
+> ore.ls()
+[1] "NARROW" "ONTIME"
+> 
+
