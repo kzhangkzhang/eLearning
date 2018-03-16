@@ -1,0 +1,17 @@
+console.log('before');
+apex.server.process
+  ("CB_JSON"
+  ,{ // pData
+    pageItems : '#P9_EMPNO'
+   }
+).done(function(pData){
+       console.log('Success');
+       console.log(pData);       
+       console.log(pData[0]);       
+       console.log(pData[0].ENAME);
+       console.log(pData[0].JOB);
+       console.log(pData[0].HIREDATE);
+
+       $s('P9_SAL', pData[0].SAL);
+});
+console.log('End');

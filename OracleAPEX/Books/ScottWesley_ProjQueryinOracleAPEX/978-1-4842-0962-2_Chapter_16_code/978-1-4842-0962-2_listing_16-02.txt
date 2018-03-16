@@ -1,0 +1,5 @@
+select executions, substr(sql_text,122) sql_text
+from sys.v$sqlarea
+where sql_text like 'select%qb_name(%sql)%'
+and module like '%APEX:APP 113%'
+order by last_load_time

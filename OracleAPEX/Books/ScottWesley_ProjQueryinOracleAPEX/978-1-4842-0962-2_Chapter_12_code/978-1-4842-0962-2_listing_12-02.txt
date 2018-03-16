@@ -1,0 +1,15 @@
+/* invoke PL/SQL then close/refresh/alert upon return */
+apex.server.process
+  ("CB_SAVE" // AJAX callback (PL/SQL code)
+  ,{ // pData
+    pageItems : '#P2_EMPNO,#P2_ENAME'
+   }
+  ,{ // pOptions
+     dataType:"text"
+   }
+).done(
+  function(pData){
+    closeModal('p2_modal');
+    $('#p2_emps').trigger('apexrefresh');
+    alert($v('P2_ENAME')+' saved');
+}); 

@@ -1,0 +1,21 @@
+a.uButton.uButtonGreen {
+  border: 1px solid #55a955;
+  border-bottom: 1px solid #55a955;
+  background: #55a955;
+}
+a.uButton.uButtonGreen span {
+  background-color: #e6f0e6;
+  filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, startColorstr='#e6fae6', endColorstr='#e6f0e6');
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#e6fae6', endColorstr='#e6f0e6')";
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #e6fae6), color-stop(100%, #e6f0e6));
+  background-image: -webkit-linear-gradient(#e6fae6,#e6f0e6);
+  background-image: -moz-linear-gradient(#e6fae6,#e6f0e6);
+  background-image: linear-gradient(#e6fae6,#e6f0e6);
+  color: #404040;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.75);
+  -webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.5) inset;
+  -moz-box-shadow: 0 1px 0 rgba(255,255,255,0.5) inset;
+  box-shadow: 0 1px 0 rgba(255,255,255,0.5) inset;
+  padding-bottom:10px;
+  padding-top:10px;
+}

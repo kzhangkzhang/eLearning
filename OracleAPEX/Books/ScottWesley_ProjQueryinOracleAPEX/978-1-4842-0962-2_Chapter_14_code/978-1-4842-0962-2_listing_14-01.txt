@@ -1,0 +1,15 @@
+CREATE TABLE apex_timeline
+  (version VARCHAR2(10)
+  ,ga_date DATE
+  ,support_ends DATE
+)
+/   
+-- As sourced from http://www.oracle.com/us/support/library/lifetime-support-technology-069183.pdf
+insert into apex_timeline (version,ga_date,support_ends) values ('1.6',date '2005-07-01',date '2008-12-01');
+insert into apex_timeline (version,ga_date,support_ends) values ('2.2',date '2006-08-01',date '2009-08-01');
+insert into apex_timeline (version,ga_date,support_ends) values ('3.1',date '2008-02-01',date '2011-02-01');
+insert into apex_timeline (version,ga_date,support_ends) values ('3.2',date '2009-02-01',date '2012-02-01');
+insert into apex_timeline (version,ga_date,support_ends) values ('4.1',date '2011-08-01',date '2016-08-01');
+insert into apex_timeline (version,ga_date,support_ends) values ('4.2',date '2012-10-01',date '2017-10-01');
+insert into apex_timeline (version,ga_date,support_ends) values ('5.0',date '2015-04-01',date '2020-04-01');
+

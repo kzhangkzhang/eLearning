@@ -1,0 +1,4 @@
+select /*+ qb_name(bad_sql) */
+apex_util.prepare_url('f?p=&APP_ID.:2:&APP_SESSION.::::P2_EMPNO:'||empno) as lnk
+-- the good_sql version: apex_util.prepare_url('f?p=&APP_ID.:2:'||:APP_SESSION||'::::P2_EMPNO:'||empno) as lnk
+,empno -- and the rest of your columns in the existing query...

@@ -1,0 +1,5 @@
+// update no data found message after PPR of region
+$('#p4_emps').on('apexafterrefresh', function() { 
+  $(this).find('span.nodatafound')
+         .html('No rows found using criteria "'+$v('P4_REPORT_SEARCH')+'"');
+});

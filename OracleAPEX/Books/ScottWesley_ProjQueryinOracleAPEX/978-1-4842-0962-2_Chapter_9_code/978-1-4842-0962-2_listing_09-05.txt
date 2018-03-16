@@ -1,0 +1,21 @@
+console.log('Before');
+var jqxhr = apex.server.process
+  ("CB_AJAX" // name of AJAX callback
+  ,{ // pData
+     x01       : $v('P9_EMPNO')
+    ,pageItems : '#P9_EMPNO'
+   }
+  ,{ // pOptions
+     dataType:"text" // default: json
+    ,loadingIndicator : "#P9_SAL"
+   }
+);
+console.log('Process Submitted');
+
+jqxhr.done(function(data) {
+    // wait for result content here
+    console.log('Success');
+
+});
+
+console.log('End');

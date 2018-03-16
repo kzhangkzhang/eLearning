@@ -1,0 +1,26 @@
+/* employee delete button click */
+function delete_dialog() {
+ apex.server.process
+   ("CB_DELETE"
+   ,{ // pData
+     //pageItems : '#P3_EMPNO'
+    }
+   ,{ // pOptions
+     loadingIndicatorPosition: "page" // we're waiting for message, ensure user knows
+   }
+  ).done(
+    function(pData){
+      if (pData.output[0].outcome === 'DELETE') {
+        // Set dialog based on output then display
+        $('#confirm_delete')
+          .css('margin','12px')
+          .html(pData.output[0].message)
+          .dialog('open');
+        $('div.ui-dialog-buttonset button:last-child').focus();
+      }
+      else if (pData.output[0].outcome === 'DENIED') {
+        // Notify user delete not allowed in this case
+        alert(pData.output[0].message);
+      }
+  }); // end done
+} // end delete_dialog

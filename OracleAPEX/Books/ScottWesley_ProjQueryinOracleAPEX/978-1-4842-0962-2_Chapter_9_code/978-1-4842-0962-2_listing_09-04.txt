@@ -1,0 +1,18 @@
+console.log('Before');
+apex.server.process
+  ("CB_AJAX" // name of AJAX callback
+  ,{ // pData
+     x01       : $v('P9_EMPNO')
+    ,pageItems : '#P9_EMPNO'
+   }
+  ,{ // pOptions
+     dataType:"text" // default: json
+    ,loadingIndicator : "#P9_SAL"
+   }
+).done(function(pData) {
+  // PL/SQL finished
+  console.log('Success');
+
+  $s('P9_SAL', pData);
+});
+console.log('End');

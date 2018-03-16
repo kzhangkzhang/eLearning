@@ -1,0 +1,8 @@
+with this_year as
+(select rownum rn, (trunc(sysdate,'yy')+rownum) dt
+ from dual
+ connect by level < 365
+)
+select rownum, dt, to_char(dt, 'fmDay')
+from this_year
+where to_char(dt,'DY') not in ('SAT','SUN')

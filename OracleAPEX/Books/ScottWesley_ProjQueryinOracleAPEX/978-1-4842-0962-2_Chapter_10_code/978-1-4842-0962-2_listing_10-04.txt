@@ -1,0 +1,6 @@
+/* create empty collection if not already present */
+if not apex_collection.collection_exists('CHECKOUT') then
+  apex_collection.create_collection
+   (p_collection_name => 'CHECKOUT');
+end if;
+   

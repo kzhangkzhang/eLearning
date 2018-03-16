@@ -1,0 +1,26 @@
+/* some room below the report */
+td.pagination {
+  padding-top: 10px;
+}
+/* elbow room between buttons */
+td.pagination button.uButton {
+  margin:0 4px;
+  padding: 0px;
+}
+/* make buttons bigger for tablet fingers */
+td.pagination button.uButton span {
+  font-size: 150%;
+  padding: 10px 15px;
+}
+/* the 'current' page */
+td.pagination b {
+  padding: 20px;
+  font-size: 200%;
+}
+/* When larger data sets - next/prev links */
+td.pagination a.uPaginationNext
+,td.pagination a.uPaginationPrev 
+,td.pagination t-Report-paginationLink /* Theme 42 */
+{
+  font-size: 200%;
+}

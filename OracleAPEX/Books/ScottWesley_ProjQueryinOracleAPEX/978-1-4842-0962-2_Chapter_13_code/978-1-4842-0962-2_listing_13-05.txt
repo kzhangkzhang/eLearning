@@ -1,0 +1,17 @@
+/* CB_APEX_JSON */
+DECLARE
+  c sys_refcursor;
+BEGIN
+  open c for
+    select first_name, last_name, is_ace
+       ,cursor(select tool
+                     ,year
+                 from emp_skills s
+                where s.emp_id = e.id) skills
+       ,retired
+    from employees e;
+
+  apex_json.open_object;
+  apex_json.write('emps', c);
+  apex_json.close_object;
+END;

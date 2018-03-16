@@ -1,0 +1,20 @@
+console.log('Before');
+var jqxhr = apex.server.process
+  ("CB_AJAX"
+  ,{ // pData
+     x01       : $v('P9_EMPNO')
+    ,pageItems : '#P9_EMPNO'
+   }
+  ,{dataType:"text"}
+);
+console.log('Process Submitted');
+
+jqxhr.done(function(data) {
+    console.log('Success');
+
+    // wait for result content here
+    console.log('After apex.server.process');
+
+});
+
+console.log('End');

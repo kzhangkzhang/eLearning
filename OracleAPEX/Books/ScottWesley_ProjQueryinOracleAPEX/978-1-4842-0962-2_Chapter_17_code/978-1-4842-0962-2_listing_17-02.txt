@@ -1,0 +1,22 @@
+function apply_pagination(report_id) {
+  // Note: selector differences across themes
+  var selector = ' td.pagination span.fielddata';  // Theme 25 
+  //var selector = ' span.t-Report-paginationText';  // Theme 42
+
+    // hide single number if one page of results shown
+  if ($(report_id+selector+' a').size() == 0)
+    $(report_id+selector).css('display','none');
+
+  // transform each link found into a button, converting href to onclick
+  $(report_id+selector+' a').each(function(){
+    $(this).replaceWith('<button class="uButton" onclick="'+$(this).attr('href')+'" type="button"><span>'+$(this).text()+'</span></button>');
+  });
+
+  // Theme 25: Next/Prev when over ten pages identified separately, hence can be treated independently
+  $(report_id+' td a.uPaginationNext').text('(Next)');
+  $(report_id+' td a.uPaginationPrev').text('(Prev)');
+  // Hide in t42, though could differentiate with class suffix --next
+  // or instead ask user to refine search so next() not needed
+  $(report_id+' a.t-Report-paginationLink').hide(); 
+
+}

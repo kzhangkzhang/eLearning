@@ -1,0 +1,8 @@
+// on click of anchor
+$('#p6_emps').on('click'    // region
+  ,'td[headers="EMPNO"] a'  // element in region 
+  ,function(evt) {
+     // $(this) = $(evt.target)
+     console.log('html:'+$(this).text());
+   }
+);  

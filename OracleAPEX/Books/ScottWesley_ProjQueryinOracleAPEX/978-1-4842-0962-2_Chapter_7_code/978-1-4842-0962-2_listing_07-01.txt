@@ -1,0 +1,6 @@
+body table.uReport tr.rowHighlightClassic td {
+  background-color: #FFFFCC !important;
+}
+body table.uReport tr.rowHighlightClassic:hover td {
+  background-color: #FFFF99 !important;
+}

@@ -1,0 +1,12 @@
+/* Font size */
+body .ui-datepicker table {
+  font-size:200%;
+}
+/* Cell padding */
+body .ui-datepicker td a.ui-state-default {
+  padding:12px;
+}
+/* Picker width */
+body .ui-datepicker {
+  width: 406px;
+}

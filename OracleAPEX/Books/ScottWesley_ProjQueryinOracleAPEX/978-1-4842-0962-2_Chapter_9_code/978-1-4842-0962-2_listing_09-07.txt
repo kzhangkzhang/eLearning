@@ -1,0 +1,8 @@
+declare
+    c sys_refcursor;
+begin
+  apex_debug.message(':P9_EMPNO => '||:P9_EMPNO);
+
+  open c for select empno, ename, job, hiredate, sal from emp where empno = :P9_EMPNO;
+  apex_json.write(c);
+end;

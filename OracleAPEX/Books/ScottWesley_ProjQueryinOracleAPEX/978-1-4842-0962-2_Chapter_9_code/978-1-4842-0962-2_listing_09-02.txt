@@ -1,0 +1,10 @@
+begin
+  apex_debug.message('x01:'||apex_application.g_x01);
+  select sal
+  into :P9_SAL
+  from emp 
+  where empno = to_number(apex_application.g_x01);
+  htp.prn(:P9_SAL);
+exception when no_data_found then
+  htp.prn('?');
+end;

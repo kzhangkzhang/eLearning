@@ -1,0 +1,7 @@
+// on page load
+apply_pagination('#paginated'); 
+// and each time the report is refreshed, typically via pagination
+$('#paginated').on('apexafterrefresh', function(e) {
+  // reapply conversion of links to buttons
+  apply_pagination('#paginated');
+});

@@ -1,0 +1,11 @@
+function p4_emps_afterrefresh() { 
+
+  // update no data found message after PPR of region
+  $(this).find('span.nodatafound').html('No rows found using criteria "'+$v('P4_REPORT_SEARCH')+'"');
+
+  // Highlight all salary values, excluding totals row 
+  $('#p4_emps td.t-Report-cell[headers="SAL"]:not(:last)').each(function(){
+    if (parseInt($(this).text()) >= 3000)
+      $(this).css({"background-color":"lightgreen"});   
+  });
+}

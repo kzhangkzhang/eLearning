@@ -1,0 +1,17 @@
+create table emp_skills
+  (emp_id  number not null
+  ,tool    varchar2(30) not null
+  ,year    number not null
+);
+
+create table employees
+  (id          number not null
+  ,first_name  varchar2(30)
+  ,last_name   varchar2(30)
+  ,is_ace      varchar2(1)
+  ,retired     varchar2(1)
+);
+
+insert into employees values (1, 'Scott', 'Wesley', 'Y', null);
+insert into emp_skills values (1, 'Forms', 2000);
+insert into emp_skills values (1, 'APEX', 2008);

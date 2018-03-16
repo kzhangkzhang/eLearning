@@ -1,0 +1,19 @@
+/* turn div into dialog */
+$("#p0_dialog").dialog(
+    {modal : true
+    ,title : 'Confirm delete'
+    ,autoOpen:false
+    ,resizable:false
+    ,dialogClass: "no-close"
+    ,width : 'auto'
+    ,closeOnEscape : false
+    ,buttons : {
+      "Cancel" : function () {
+        $("#p0_dialog").dialog("close");
+      }
+     ,"Delete": function () {
+        $("#p0_dialog").dialog("close");
+        apex.submit('DELETE');
+      }
+    }
+});

@@ -1,0 +1,48 @@
+/* populate_collection */
+declare
+  -- Populate collection with source data
+  l_collection varchar2(20) := 'TIMELINE';
+  l_sql varchar2(32767);
+begin
+  apex_collection.create_or_truncate_collection(l_collection);
+
+  for r_rec in (
+   -- define a unique ID for each item produced
+    select 
+      version
+     ,ga_date      
+     ,support_ends 
+     -- use major version to group releases
+     ,substr(version, 1, 1) group_id
+     -- derive class for group background
+     ,case substr(version,1,1) 
+      when '2' then 'teal'
+      when '3' then 'green'
+      when '4' then 'blue'
+      when '5' then 'apex5'
+      else 'htmldb'
+      end group_background
+      -- class is used to dress the timeline items
+      ,case 
+       when support_ends < sysdate then 'desupported'
+       when version like '5%' then 'ga_future'
+       else 'ga_current' 
+       end item_class
+    from apex_timeline t
+    order by ga_Date
+  ) loop
+
+    apex_collection.add_member
+     (p_collection_name => l_collection
+     ,p_c001 => r_rec.version
+     ,p_c002 => r_rec.group_id
+     ,p_c003 => r_rec.group_background
+     ,p_c004 => r_rec.item_class
+     ,p_d001 => r_rec.ga_date
+     ,p_d002 => r_rec.support_ends
+    );
+    -- for larger examples, please consider using create_collection_from_query_b
+
+  end loop;
+
+end populate_collection;

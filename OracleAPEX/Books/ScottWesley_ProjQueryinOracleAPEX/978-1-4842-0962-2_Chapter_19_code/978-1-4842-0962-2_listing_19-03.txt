@@ -1,0 +1,6 @@
+// add up size of multiple files
+var totsize = 0;
+for (var i = 0, f; f = this.browserEvent.target.files[i]; i++) {
+  totsize = totsize + f.size;
+}
+console.log(this.browserEvent.target.files.length+' files, total size:'+totsize);

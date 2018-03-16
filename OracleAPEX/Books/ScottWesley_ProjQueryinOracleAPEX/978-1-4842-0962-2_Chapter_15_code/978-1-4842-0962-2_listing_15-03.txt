@@ -1,0 +1,5 @@
+/* Change font settings for totals row */
+#report_p4_emps table.t-Report-report tbody tr:last-child td {
+  font-weight : italic;
+  color : red;
+}

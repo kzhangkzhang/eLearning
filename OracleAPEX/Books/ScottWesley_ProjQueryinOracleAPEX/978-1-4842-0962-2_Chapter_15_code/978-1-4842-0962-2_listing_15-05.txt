@@ -1,0 +1,4 @@
+// Prime report region
+p4_emps_afterrefresh();
+// Bind to PPR
+$('#p4_emps').on('apexafterrefresh', p4_emps_afterrefresh);

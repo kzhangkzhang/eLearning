@@ -1,0 +1,17 @@
+// refresh list on search
+$('#P6_REPORT_SEARCH').keyup(
+  function(evt) {
+
+    // simple return of HTML ID that caused event
+    console.log(evt.target.id); 
+
+    // jQuery wraps this DOM element to get info
+    console.log('Value:'+$(this).val()); // item value
+      
+    // evt is equivalent to this.browserEvent in DA      
+    console.log('key:'+evt.keyCode); // which key pressed?
+
+    // refresh report region
+    $('#p6_emps').trigger('apexrefresh');      
+  }
+);

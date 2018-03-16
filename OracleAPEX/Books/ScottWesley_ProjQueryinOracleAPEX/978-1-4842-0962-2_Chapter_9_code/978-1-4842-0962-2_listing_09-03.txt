@@ -1,0 +1,9 @@
+begin
+  apex_debug.message('P9_EMPNO:'||:P9_EMPNO);
+  select sal
+  into :P9_SAL
+  from emp 
+  where empno = to_number(:P9_EMPNO);
+exception when no_data_found then
+  :P9_SAL := '?';
+end;

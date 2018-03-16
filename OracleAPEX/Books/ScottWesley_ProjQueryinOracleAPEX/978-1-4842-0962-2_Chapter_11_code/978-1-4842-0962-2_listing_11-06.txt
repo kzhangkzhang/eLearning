@@ -1,0 +1,21 @@
+/* display generic alert */
+function get_alert (p_message, p_title, p_callback) {
+  $("<div/>", { "html" : p_message})
+     .attr({"title" : p_title})
+     .css('margin','12px')
+     .dialog({
+        modal   : true
+       ,buttons : {
+          "Oh dear" : function() {
+            $(this).dialog("close");
+            // invoke function sent by invoker
+            p_callback();
+          }
+        } // buttons
+      }); // dialog
+} // get_alert
+
+function do_something(){
+  // callback used for dialog button
+  console.log('called');
+}

@@ -1,0 +1,29 @@
+/* CB_LISTAGG */
+declare
+  l_json  varchar2(4000);
+begin
+with skills as
+  (select '{ '
+         ||' "tool":"'||s.tool||'"'
+         ||',"yearStarted":"'||s.year||'"'
+         ||'}' nested_json
+       ,s.emp_id
+  from emp_skills s)
+select '{ '
+       ||' "firstName":"'||e.first_name||'"'
+       ||',"lastName":"'||e.last_name||'"'
+       ||',"OracleACE":"'||nvl2(e.is_ace, 'true', 'false')||'"'
+       ||',"skillset":'||(  select '['||listagg( s.nested_json, ',')
+                                                  within group (order by null)
+                                  ||']' as nested_data
+                             from skills s
+                             where s.emp_id = e.id
+                          )
+       ||',"retired":"'||nvl2(e.retired, '"Y"', 'null')||'"'
+       ||'} ' json
+into   l_json
+from   employees e;
+
+htp.p(l_json);
+end;
+/

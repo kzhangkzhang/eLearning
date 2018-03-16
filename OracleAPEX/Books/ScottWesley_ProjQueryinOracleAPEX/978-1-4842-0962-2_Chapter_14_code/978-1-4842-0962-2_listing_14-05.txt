@@ -1,0 +1,11 @@
+/* timeline items */
+#p14_timeline div.vis-group div.vis-item.desupported {background-color:#F49AA1;}
+#p14_timeline div.vis-group div.vis-item.ga_current {background-color:#9AF49F;}
+#p14_timeline div.vis-group div.vis-item.ga_future {background-color:#F1F49A;}
+/* background eras */
+#p14_timeline div.vis-group div.vis-item.htmldb {background-color:lavenderblush;}
+#p14_timeline div.vis-group div.vis-item.teal {background-color:#B6FACC;}
+#p14_timeline div.vis-group div.vis-item.green {background-color:#D4F7CE;}
+#p14_timeline div.vis-group div.vis-item.blue {background-color:#b9d6fc;}
+/* JoelK says white represents APEX5, but that doesn't work well in this demo ;p */
+#p14_timeline div.vis-group div.vis-item.apex5 {background-color:#D4E4F9;}

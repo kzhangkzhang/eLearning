@@ -1,0 +1,22 @@
+/* toggle collection membership */
+apex_debug.message('CB_CHECKOUT');
+apex_debug.message('Value:'||apex_application.g_x01);
+apex_debug.message('Checked:'||apex_application.g_x02);
+
+-- add member to collection if checked
+-- else delete where c001 = value
+if apex_application.g_x02 = 'true' then
+  APEX_COLLECTION.ADD_MEMBER 
+   (p_collection_name => 'CHECKOUT'
+   ,p_c001 => apex_application.g_x01
+   ,p_n001 => apex_application.g_x01
+   );
+   htp.prn('added:'||apex_application.g_x01);
+else
+  APEX_COLLECTION.DELETE_MEMBERS
+   (p_collection_name => 'CHECKOUT'
+   ,p_attr_number => 1
+   ,p_attr_value => apex_application.g_x01
+   );
+   htp.prn('removed:'||apex_application.g_x01);
+end if;

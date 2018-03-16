@@ -1,0 +1,8 @@
+apex.server.process
+  ("CB_LISTAGG"
+  ,{ }
+  ,{ dataType:"json" }
+).done(
+  function(pData){
+    console.log(pData.emps[0]);
+});

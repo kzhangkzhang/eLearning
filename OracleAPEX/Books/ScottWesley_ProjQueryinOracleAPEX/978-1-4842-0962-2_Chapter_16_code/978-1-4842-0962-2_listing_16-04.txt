@@ -1,0 +1,6 @@
+// listen for click on table row of given region
+$('#p2_emps').on('click', 'tr', function(event) {
+  l_target = $(event.target).closest('tr').find('a.rowlink').attr('href');
+  if (l_target)
+    window.location=l_target;
+});

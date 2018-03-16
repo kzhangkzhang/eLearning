@@ -1,0 +1,5 @@
+function highlightRowClassic(pElement){
+  // remove highlight from other row, make sure done before new highlight
+  $(pElement).closest('tbody').children('tr.rowHighlightClassic').removeClass("rowHighlightClassic");
+  $(pElement).addClass("rowHighlightClassic");
+}

@@ -1,0 +1,15 @@
+select "EMPNO", 
+"ENAME",
+"JOB",
+"MGR",
+"HIREDATE",
+"SAL",
+"COMM",
+"DEPTNO",
+ -- set attribute if empno present in collection
+ -- (see column html expression)
+ (select 'checked="checked"'
+  from apex_collections
+  where collection_name = 'CHECKOUT'
+  and   n001 = empno) AS ajax_checkbox
+from "#OWNER#"."EMP" 

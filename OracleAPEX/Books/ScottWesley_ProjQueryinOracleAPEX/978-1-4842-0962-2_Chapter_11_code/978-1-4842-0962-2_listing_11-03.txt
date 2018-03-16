@@ -1,0 +1,22 @@
+/* change right hand button colour */
+div.ui-dialog-buttonset button:last-child  {
+  background-color: #2578cf;
+  color: white;
+}
+
+/* enlarge message font */
+.ui-dialog-content {
+  font-size:150%;
+}
+/* make buttons bolder and bigger (for fingers) */
+div.ui-dialog-buttonset button {
+  padding: 10px 14px;
+}
+div.ui-dialog-buttonset button span {
+  font-weight:bold;
+  font-size:150%;
+}
+/* give message text some elbow room */
+div.ui-dialog {
+  width: initial;
+}

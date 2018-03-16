@@ -1,0 +1,18 @@
+-- class for link attribute
+class="t-Button t-Button--simple t-Button--hot"
+
+-- Dynamic action jQuery selector
+#p2_emps a.t-Button
+
+-- Dynamic action JavaScript
+console.log(this.triggeringElement);
+$s('P2_EMPNO',$(this.triggeringElement).text());
+
+-- Intra row fetch
+$(this.triggeringElement).closest('tr').find('td[headers="SAL"]').text()
+
+-- Link attribute addition
+data-ename="#ENAME#"
+
+-- jQuery data function
+$(this.triggeringElement).data('ename');

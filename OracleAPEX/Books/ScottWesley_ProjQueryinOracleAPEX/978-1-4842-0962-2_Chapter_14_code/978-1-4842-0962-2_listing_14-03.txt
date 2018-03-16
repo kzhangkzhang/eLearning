@@ -1,0 +1,15 @@
+/* getGroups */
+declare
+  c sys_refcursor;
+begin
+  open c for 
+    select group_id    as "id"
+          ,group_id||'.x' as "content"
+  from (
+    select distinct c002 group_id
+    from  apex_collections
+    where collection_name = 'TIMELINE'
+  );
+
+  apex_json.write(c);
+end getGroups;

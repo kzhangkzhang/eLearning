@@ -1,0 +1,26 @@
+/* input items */
+#uBodyContainer input{
+  font-size:120%;
+  line-height: 130%;
+}
+#modal_width input{
+  font-size:140%;
+  line-height: 130%;
+}
+
+#uBodyContainer textarea
+,#modal_width textarea{
+  font-size: 130%;
+  line-height: 130%;
+}
+
+/* labels */
+a.uHelpLink
+,label.uRequired
+,label.uOptional
+,select.selectlist
+,span.display_only
+,fieldset.radio_group label
+{
+  font-size:130% !important;
+}

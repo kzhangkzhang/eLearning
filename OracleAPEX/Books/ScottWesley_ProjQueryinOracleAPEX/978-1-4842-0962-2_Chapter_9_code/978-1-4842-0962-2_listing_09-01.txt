@@ -1,0 +1,11 @@
+console.log('Old process');
+var ajaxRequest = new htmldb_Get
+  (null
+  ,$v('pFlowId')
+  ,'APPLICATION_PROCESS=CB_OLD'
+  ,$v('pFlowStepId')
+);
+ajaxRequest.addParam('x01', $v('P9_EMPNO'));
+var ajaxReturn = ajaxRequest.get();
+console.log('Return:'+ajaxReturn);
+$s('P9_SAL',ajaxReturn);

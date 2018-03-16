@@ -1,0 +1,78 @@
+/* getItems */
+declare
+  cursor c_sql is
+select '{"id":"'||apex_version||'","group":"'||group_id||'"'
+  ||',"content":"'||apex_version||'"'
+  ||',"title":"'||apex_version||to_char(date1,' Mon-YY')||to_char(date2,' - Mon-YY')||'"'
+  ||',"className":"'||item_class||'"'
+  ||',"subgroup":"'||apex_version||'"'
+  ||',"subgroupOrder":"'||rn||'"'
+  ||',"release":'||'"'||apex_version||'"'
+  ||',"start":'||'"'||to_char(date1,'""yyyy"-"mm"-"dd""')||'"'
+  ||',"end":"'||to_char(date2,'""yyyy"-"mm"-"dd""')||'"}'
+    AS json
+from (
+  select n001 id
+        ,c001 apex_version
+        ,c002 group_id
+        ,d001 date1 -- GA date
+        ,d002 date2 -- support ends
+        ,c004 item_class
+         -- order the items chronologically
+        ,row_number() over (order by d001 desc) rn
+  from  apex_collections
+  where collection_name = 'TIMELINE'
+)
+where date1 is not null;
+
+  type t_data  is table of c_sql%rowtype index by pls_integer;
+  l_data   t_data;
+  l_background  varchar2(2000);
+
+begin
+  -- Could not combine results with apex_json
+  -- so building the string piecemeal
+  sys.htp.prn('['); -- open the json string
+
+  -- start by producing individual items to be shown in timeline
+  open c_sql;
+  loop
+    -- process data in chunks, optimal limit size varies
+    fetch c_sql bulk collect into l_data limit 10;
+
+    for i in 1..l_data.count loop
+      -- each json object separated by comma.
+      sys.htp.prn(l_data(i).json||',');
+    end loop;
+
+    exit when c_sql%notfound;
+  end loop c_sql;
+  close c_sql;
+
+  -- No need to trim final comma before output since
+  -- a second set of json objects are being added.
+  -- These represent the coloured backgrounds for the various eras of APEX
+
+  -- The data set is small so listagg() ok
+  select listagg('{"id":"background_'||apex_version||'"' -- IDs can be alphanumeric
+    ||',"type":"background"'
+    ||',"className":"'||group_background||'"'
+    ||',"start":'||'"'||to_char(date1,'""yyyy"-"mm"-"dd""')||'"'
+    ||',"end":"'||to_char(date2,'""yyyy"-"mm"-"dd""')||'"}'
+      ,',') within group (order by date1)  json
+  into l_background
+  from (
+    select c002 group_id
+          ,c001 apex_version
+          ,d001 date1 
+          -- use the end date or the next start date, whatever started first
+          ,least(d002, nvl(lead(d001) over (order by c002), d002)) date2
+          ,c003 group_background
+    from  apex_collections
+    where collection_name = 'TIMELINE'
+  );
+
+  -- since JSON string in one variable it can be trimmed during output
+  sys.htp.prn(rtrim(l_background,',')||']'); -- include closing square bracket
+
+end getItems;

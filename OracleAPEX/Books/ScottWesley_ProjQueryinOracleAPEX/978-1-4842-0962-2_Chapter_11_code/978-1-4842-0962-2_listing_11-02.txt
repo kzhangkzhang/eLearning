@@ -1,0 +1,7 @@
+/* open delete dialog */
+function delete_dialog(p_msg) {
+  $('#confirm_delete')
+    .css('margin','12px') // tidy the messsage within the dialog
+    .html(p_msg)          // define the actual message
+    .dialog('open');      // open the dialog
+}

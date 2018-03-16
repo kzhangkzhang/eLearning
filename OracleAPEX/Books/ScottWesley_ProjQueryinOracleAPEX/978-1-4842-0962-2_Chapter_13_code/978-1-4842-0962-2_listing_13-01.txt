@@ -1,0 +1,15 @@
+apex.server.process
+  ("CB_BASIC"
+  ,{ }
+  ,{ dataType:"text" }
+).done(
+  function(pData){
+    console.log(pData);
+
+    // split string into an array
+    var results = pData.split(':'); 
+    console.log(results[0]);
+    console.log(results[1]);
+
+});
+

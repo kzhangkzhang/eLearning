@@ -1,0 +1,29 @@
+/* Determine delete message */
+DECLARE
+  l_outcome  VARCHAR2(20);
+  l_message  VARCHAR2(200);
+BEGIN
+  apex_debug.message(':P3_EMPNO => '||:P3_EMPNO);
+
+  IF :P3_EMPNO = 7839 THEN
+    l_outcome := 'DENIED';
+    l_message := 'Cannot delete the president';
+  
+  ELSE 
+    l_outcome := 'DELETE';
+    
+    SELECT 'Do you wish to delete '||ename||'?'
+    INTO   l_message
+    FROM   emp
+    WHERE  empno = :P3_EMPNO;
+  
+  END IF;
+
+  htp.p(
+'{"output":[
+    {"outcome":"'||l_outcome||'"
+    ,"message":"'||l_message||'"
+    }
+]}'
+);
+END cb_delete;

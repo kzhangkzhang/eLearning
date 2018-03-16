@@ -1,0 +1,20 @@
+function enable_row_link(p_identifier) {
+  // Convert the entire table row to be an anchor
+  // <a class="rowlink" href="#THE_URL#" 
+  // add data="#ID" if you want to make extra information available
+  // call: enable_row_click('a.rowlink');
+  $(p_identifier).each(function(index) {
+     lnk = $(this).data('url');
+     $(this).closest('tr')
+      .data('href', lnk)
+      .click(function(){
+        window.location=$(this).data('href');
+      })
+      .mouseover(function(){
+        $(this).css('cursor', 'pointer');
+      })
+      .mouseleave(function(){
+        $(this).css('cursor', 'default');
+      })
+  });
+}

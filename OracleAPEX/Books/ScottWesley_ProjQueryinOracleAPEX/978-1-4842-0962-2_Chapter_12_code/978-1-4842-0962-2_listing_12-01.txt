@@ -1,0 +1,3 @@
+openModal('p2_modal');
+$('#P2_EMPNO').val('').focus(); // this will clear the empno without invoking a change event
+$s('P2_ENAME',''); // this will clear the ename using a supplied API

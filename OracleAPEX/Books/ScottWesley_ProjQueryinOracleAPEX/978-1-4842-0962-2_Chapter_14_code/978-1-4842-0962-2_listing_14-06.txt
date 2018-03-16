@@ -1,0 +1,119 @@
+/* Define namespace to group related functions */
+var p14_timeline = {
+
+init: function() {
+  // Display a spinner to show loading in progress
+  lSpinner$ = apex.util.showSpinner( $( "#p14_timeline" ) );
+
+  this.getGroups(); // 'this' namespace, the function within it
+  // then getItems
+  // then drawChart 
+}
+
+// Get group information from the database
+,getGroups: function() {
+  apex.debug('fetch group list from DB');
+  apex.server.process("getGroups") // name of AJAX callback in APEX page
+   .done( // what happens on success
+     function(pGroups) { // data returned from PL/SQL
+       apex.debug('Number of groups: '+pGroups.length); 
+       
+       // output shown in Figure 14-4
+       apex.debug(pGroups);
+       apex.debug(JSON.stringify(pGroups));
+       
+       // convert JSON object returned from PL/SQL into vis data set 
+       groupSet = new vis.DataSet(pGroups);
+   }
+   ).then(p14_timeline.getItems) // what happens next in the chain.
+    .fail( // what happens if there is some form of failure?
+      function( jqXHR, textStatus, errorThrown ) { // parameters sent from framework
+        p14_timeline.logFailure('getGroups', jqXHR, errorThrown);
+      });
+}
+
+// Get item information from the database
+,getItems: function() {
+  apex.debug('fetch item list from db');
+  apex.server.process("getItems"
+  ).then( // callbacks: first parameter success, second parameter failure
+    function(pItems) {
+      apex.debug('Number of items: '+pItems.length);
+      apex.debug(pItems); 
+      // convert JSON to vis object
+      itemSet = new vis.DataSet(pItems);
+      
+      // now render the chart since both data sets returned
+      p14_timeline.drawChart();
+    }
+   , // what happens if there is some form of failure?
+     function( jqXHR, textStatus, errorThrown ) {
+       p14_timeline.logFailure('getItems', jqXHR, textStatus, errorThrown);
+   }); // end then
+}    
+
+// only attempt to draw chart once both methods to fetch data are completed
+,drawChart: function() {
+ 
+  // if any errors encountered, don't bother attempting to render chart
+  if (p14_timeline.errorCnt != 0) {
+     console.log('error:'+p14_timeline.errorCnt);
+  }
+  else {
+    // good to go, let's render the chart
+    apex.debug('create visualisation');
+    
+    // Further details avialable here
+    // http://visjs.org/docs/timeline/#Configuration_Options
+    var options = {
+      editable: false // for another day
+     ,min : new Date(2004, 1, 1) // bound the timeline display
+     ,max : new Date(2017, 1, 1)
+     ,zoomMin: 1000 * 60 * 60 * 24 * 31 * 12 *2     // about 2 years in milliseconds, depends on chart pixel size
+     ,zoomMax: 1000 * 60 * 60 * 24 * 31 * 12 *10    // about 10 years in milliseconds
+     ,zoomable : true
+     //,moveable : false   // helps scrolling issues in large charts
+     ,maxHeight : "1000px" 
+     ,stack : false
+     ,dataAttributes: ['release'] // extra data attribute can be handy
+    };
+
+    apex.debug('do actual render, with data gathered from db');
+    // identifies #p14_timeline div the native way, which returns the single entity, not an array like $() does
+    var timeline = new vis.Timeline(document.getElementById('p14_timeline'));
+    timeline.setOptions(options);
+    timeline.setGroups(groupSet);
+    timeline.setItems(itemSet);
+ 
+    // Spinner can be removed now
+    lSpinner$.remove();
+
+    // set item when user clicks on timeline entry
+    timeline.on('select', function (params) {
+      $s('P14_ID', params.items[0]);
+    });
+
+  } // end if (errors)
+
+} // end draw chart
+
+// count any errors encountered, like a persistent variable in a package
+,errorCnt : 0
+
+// some sort of error encountered
+,logFailure: function(pProc, jqXHR, errorThrown ) {
+  // information helpful to debugging issue:
+  console.log(pProc+' failure');
+  console.log(jqXHR.responseText);
+  console.log(errorThrown);
+  
+  // increment the count the old fashioned way
+  this.errorCnt++;
+  
+  // the chart isn't going to render now, so update the region
+  $('#p14_timeline div.t-Region-body').text('The chart failed to render.');
+  // Remove spinner if error raised
+  lSpinner$.remove();
+}
+
+} // end namespace
