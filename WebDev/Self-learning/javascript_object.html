@@ -1,0 +1,127 @@
+<html>
+	<head>
+		<title>Kevin is learning Objects in Javascript </title>
+		
+	</head>
+
+	<body >
+
+		<script language="javascript" type="text/javascript">
+			<!-- Hide Javascript
+
+			function Animal() {
+
+				this.name = "No Name";
+				this.sound = "Grrr";
+				this.ower = "No Owner";
+			}
+
+			//Owner
+			Animal.prototype.setOwner = function(newOwner)
+			{
+				if (typeof newOwner != 'undefined')
+				{
+					this.owner = newOwner;
+				}
+				else {
+					document.write("please enter a valid owner");
+				}
+			}
+
+			Animal.prototype.getOwner = function()
+			{
+				return this.owner;
+			}
+
+			//Name
+			Animal.prototype.setName = function(newName)
+			{
+				if (typeof newName != 'undefined')
+				{
+					this.name = newName;
+				}
+				else {
+					document.write("please enter a valid name");
+				}
+			}
+
+			Animal.prototype.getName = function()
+			{
+				return this.name;
+			}
+
+			//Sound
+			Animal.prototype.setSound = function(newSound)
+			{
+				if (typeof newSound != 'undefined')
+				{
+					this.owner = newSound;
+				}
+				else {
+					document.write("please enter a valid sound");
+				}
+			}
+
+			Animal.prototype.getSound = function()
+			{
+				return this.sound;
+			}
+
+			var dog = new Animal();
+
+			dog.setName("Spot");
+			dog.setOwner("Kevin");
+			dog.setSound("Woof");
+
+			document.write(dog.getName() + "<br />");
+			document.write(dog.getOwner() + "<br />");
+			document.write(dog.getSound() + "<br />");
+
+			function Cat() {
+				Animal.call(this);
+				this.mode = "Happy";
+			}
+
+			Cat.prototype = new Animal();
+			Cat.prototype.constructor = Cat;
+
+			Cat.prototype.setMode = function (newMode)
+			{
+				if (typeof newMode != 'undefined')
+				{
+					this.mode = newMode;
+				}
+				else
+				{
+					document.write("Please enter a valid mode");
+				}
+			}
+
+			Cat.prototype.getMode = function ()
+			{
+				return this.mode;
+			}
+
+			var sophie = new Cat;
+
+			sophie.setName("Sophie");
+			sophie.setOwner("Kevin");
+			sophie.setSound("Meow");
+			sophie.setMode("Crazy");	
+
+			document.write(sophie.getName() + "<br />");
+			document.write(sophie.getOwner() + "<br />");
+			document.write(sophie.getSound() + "<br />");
+			document.write(sophie.getMode() + "<br />");
+
+			document.write("sophie is a cat? " + (sophie instanceof Cat) + "<br />");
+			document.write(typeof(Cat) + "<br />");
+			document.write(typeof(sophie) + "<br />");			
+			-->
+
+		</script>
+
+		Kevin, please continue learn as much as you can!<br>
+			
+	</body>
+</html>

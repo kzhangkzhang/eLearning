@@ -1,0 +1,202 @@
+<html>
+	<head>
+		<title>Kevin learning web development</title>
+	</head>
+	<body>
+		<script language="javascript" type="text/javascript">
+			<!-- Hide javascript
+			document.write("hello word" + "<br />");
+			document.write(Number.MAX_VALUE + "<br />");		
+			document.write(Number.MIN_VALUE + "<br />");	
+
+			var aBigNumber = 3.1415926;
+			document.write("round " + aBigNumber + " with 2 decimals = " + aBigNumber.toFixed(2) + "<br />");
+			document.write("integer of  " + aBigNumber + " = " + parseInt(aBigNumber) + "<br />");			
+			document.write("data type  of  " + aBigNumber + " = " + typeof(aBigNumber) + "<br />");	
+
+			var myFirstName = "Kevin";
+			var myLastName = "Zhang";			
+			document.write("my name is " + myFirstName + ", " + myLastName + "<br />");
+
+			var str_var = "5"; 
+			var num_var = 10;
+
+			var total = num_var + str_var;
+			var mult_total = num_var * str_var;
+			document.write(" 5 + 10  = " + total + "<br />");
+			document.write(" 5 * 10  = " + mult_total + "<br />");
+
+			total = num_var + Number(str_var);
+			document.write(" 5 + 10  = " + total + "<br />");			
+
+			var num1 = 50; 
+			var num2 = 30;
+			var total = num1 + num2;
+			document.write("5 + 3 = " + total + "<br />");
+			document.write("increase by 1 = " + ++total + "<br />");
+			document.write("increase by 1 = " + total++ + "<br />");
+
+			var mySon = "Brandon";
+			document.write("# of characters for Brandon = " + mySon.length + "<br />");
+			document.write("2nd and 3rd character for Brandon is " + mySon.substr(1,2) + "<br />");
+			document.write("2nd and 3rd character for Brandon is " + mySon.substring(1,2) + "<br />");			
+			document.write("index of o for Brandon is " + mySon.indexOf('o') + "<br />");
+			document.write("\"my\" name is " + "\t Kevin Zhang");
+
+			var myKids = new Array(2);
+
+			myKids[0] = "Brandon Zhang";
+			myKids[1] = "Elene Zhang";
+
+			document.write("my first kid is " + myKids[0] + "<br />");
+			document.write("my 2nd kid is " + myKids[1] + "<br />");
+
+			var myFamily = new Array("Kevin", "Ying", "Brandon", "Elena");
+			document.write("1st memeber of my family " + myFamily[0] + "<br />");
+
+
+			for (i in myFamily)
+			{
+
+				document.write("my family member " + i + " is " + myFamily[i] + "<br />");
+			}
+
+			var colors;
+			colors = ["white", "black", "red"];
+
+			document.write("I have " + colors.length + " colors" + "<br /> ==> ");
+
+			for (i in colors)
+			{
+				document.write("color " + i + " is " + colors[i] + "<br />");
+			}
+
+			//concatenate 2 arrays together
+			myFamilyColr = myFamily.concat(colors);
+
+			//array functions
+			document.write("Array String: " + colors.join(", ") + "<br />");
+			document.write("Array Slice: " + colors.slice(1,2) + "<br />");		
+			document.write("Array Reverse: " + colors.reverse() + "<br />");		
+
+			for (i in myFamilyColr)
+			{
+				document.write(" Family color " + i + " is " + myFamilyColr[i] + "<br />");
+			}
+
+			var numList = [2,6,3,8,10,9];
+
+			document.write("Array Sort: " + numList.sort() + "<br />");	
+
+			//multi-dimension array
+			var multiArray = [[1,2,3,4], [6,7,8,9]];
+
+			document.write(multiArray[1][2] + "<br />");
+
+			for (var i=0; i < multiArray.length; i++)
+			{
+				for (var j=0; j<multiArray[i].length; j++)
+				{
+					document.write(multiArray[i][j] + "<br />");
+				}
+			}
+
+
+			var count = 1;
+
+			while (count <= 10)
+			{
+				if (count == 6)
+				{
+					break;
+				}
+
+				if (count % 2)
+				{
+					count++;
+					continue;
+				}
+
+				document.write(count + "\t");
+				count++;
+			}
+
+			document.write("<br />");
+
+			//for loop
+			for (i=0; i<5; i++) {
+				document.write("I am " + i + "<br />");
+			}
+
+			if (1099 > 100) {
+				alert("something is great");
+			} 
+			else if (1099 == 100)
+			{
+				document.write("1099 = 100" + "<br />");
+			}
+			else {
+				alert("this is not correct");
+			}
+
+			var state = "PA";
+
+			switch(state)
+			{
+				case "WI":
+					document.write("warmer than me" + "<br />");
+					break;
+
+				case "IA":
+					document.write("colder than me" + "<br />");
+					break;
+
+				default:
+					document.write("i don\'t know" + "<br />");
+					break;					
+			}
+
+			//function example
+			function sayHello(a,b,c,d) {
+
+				var i = 0;
+
+				//arguments.length tell you how many parameters for a given function
+				document.write("Auguments Length: " + arguments.length + "<br />");
+
+				while (i < arguments.length)
+				{
+					alert("How are you: " + arguments[i]);
+					i++;
+				}
+			}
+
+			function addThese(numberOne, numberTwo)
+			{
+				var total = numberOne + numberTwo;
+				return total;
+			}
+
+			bool_var = Boolean(23);
+			document.write("boolean of 23 is " + bool_var + "<br />");
+
+			var rand_num1 = 5;
+			var rand_num2 = 10;
+
+			document.write("Is 5 > 10: " + (rand_num1 > rand_num2) + "<br />");
+			document.write("Is 5 == 10: " + (rand_2num1 == rand_num2) + "<br />");
+			document.write("Is 5 != 10: " + (rand_num1 != rand_num2) + "<br />");			
+
+			document.write("Is 5 != 10 and 5 == 10 : " + ((rand_num1 != rand_num2) && (rand_num1 == rand_num2)) + "<br />");	
+
+			var rand_var = (5 < 10) ? "5 is less than 10" : "5 is greater than 10";
+			document.write("5 < 10: " + rand_var + "<br />");
+
+			-->
+		</script>
+	</body>
+		<script>
+			sayHello("Brandon", "Elena", "Mommy");
+			document.write("5 + 25 = " + addThese(5, 25) + "<br />");
+		</script>
+</html>

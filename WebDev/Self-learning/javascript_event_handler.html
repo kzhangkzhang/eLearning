@@ -1,0 +1,81 @@
+<html>
+	<head>
+		<title>Kevin is learning event handler in Javascript </title>
+		<style>
+			#h3style
+			{
+				color: gray;
+			}
+		</style>
+
+	</head>
+
+	<body onResize="changeImage();" onload="alert('website Loaded');">
+
+		<script language="javascript" type="text/javascript">
+			<!-- Hide Javascript
+
+			function changeImage()
+			{
+				document.getElementById("kevinzhang").style.height="35%";
+				document.getElementById("kevinzhang").style.width="35%";	
+				return true;			
+			}
+
+			function alertme()
+			{
+				alertmsg = document.kevinzhang.src + "\nHeight: " + document.kevinzhang.height + "\nWidth: " + document.kevinzhang.width;
+				alert(alertmsg);
+				return true;
+			}
+
+			function changeColor()
+			{
+				document.getElementById("h3style").style.color="red";
+				document.getElementById("h3style").firstChild.nodeValue="Excited";
+				return true;
+			}
+
+			function changeAgain()
+			{
+				document.getElementById("h3style").style.color="gray";
+				document.getElementById("h3style").firstChild.nodeValue="Bored";
+				return true;
+			}
+
+			function showPara()
+			{
+				document.getElementById("first").style.visibility=(document.formex.firstpara.checked) ? "visible" : "hidden";
+				document.getElementById("second").style.visibility=(document.formex.secondpara.checked) ? "visible" : "hidden";
+				document.getElementById("third").style.visibility=(document.formex.thirdpara.checked) ? "visible" : "hidden";
+		
+				return true;
+			}
+			-->
+
+		</script>
+
+		Kevin, please continue learn as much as you can!<br>
+
+		<img src="file:///F:/Personal/Picture/KevinZhang_SmallSize.jpg" id="kevinzhang" onDblClick="alert('you double clicked');"  onClick="alertme();" />
+
+		<h3 id="h3style" onMouseOver="changeColor();" onMouseOut="changeAgain();">Roll over </h3>
+
+		<p id="first">this is a paragraph</p>
+		<p id="second">this is a paragraph</p>
+		<p id="third">this is a paragraph</p>
+
+		<form name="formex">
+			<input type="checkbox" name="firstpara" onClick="showPara();" />First Paragraph<br />
+			<input type="checkbox" name="secondpara" onClick="showPara();" />Second Paragraph<br />
+			<input type="checkbox" name="thirdpara" onClick="showPara();" />Third Paragraph<br />
+		</form>
+
+		<form name="formex2">
+			<p>Text input</p>
+			<input type="text" name="textinput" onBlur="alert('onBlur Triggered');" onChange="alert('onChange Triggered');" onFocus="alert('onFocus Triggered');" />
+
+
+			
+	</body>
+</html>
