@@ -1,0 +1,17 @@
+{
+  "name": "expressjs_crashcourse",
+  "version": "1.0.0",
+  "description": "Kevin learning Express JS",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "body-parser": "*",
+    "ejs": "^2.5.7",
+    "express": "*",
+    "express-validator": "^5.0.2"
+  },
+  "author": "Kevin Zhang",
+  "license": "ISC"
+}
