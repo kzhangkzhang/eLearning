@@ -1,0 +1,41 @@
+function ajax_apex_jqgrid (
+   p_region in apex_plugin.t_region,
+   p_plugin in apex_plugin.t_plugin
+)
+
+   return apex_plugin.t_region_ajax_result
+
+is
+
+   l_ajax_result       apex_plugin.t_region_ajax_result;
+   l_column_value_list apex_plugin_util.t_column_value_list;
+
+begin
+
+   l_column_value_list :=
+      apex_plugin_util.get_data(
+         p_sql_statement    => p_region.source,
+         p_min_columns      => 2,
+         p_max_columns      => 50,
+         p_component_name   => p_region.name
+   );
+
+   apex_json.open_array;
+
+   for row_idx in 1 .. l_column_value_list(1).count
+   loop
+      apex_json.open_array;
+
+      for column_idx in 1 .. l_column_value_list.count
+      loop
+         apex_json.write(l_column_value_list(column_idx)(row_idx));
+      end loop;
+
+      apex_json.close_array;
+   end loop;
+
+   apex_json.close_array;
+
+   return l_ajax_result;
+
+end ajax_apex_jqgrid;

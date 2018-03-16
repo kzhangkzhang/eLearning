@@ -1,0 +1,55 @@
+function render_apex_jqgrid (
+   p_region              in apex_plugin.t_region,
+   p_plugin              in apex_plugin.t_plugin,
+   p_is_printer_friendly in boolean
+)
+
+   return apex_plugin.t_region_render_result
+
+is
+
+   l_render_result apex_plugin.t_region_render_result;
+   l_onload_code   varchar2(4000);
+   l_crlf          char(2) := chr(13)||chr(10);
+   
+begin
+
+   if apex_application.g_debug 
+   then
+      apex_plugin_util.debug_region (
+         p_plugin => p_plugin,
+         p_region => p_region
+      );
+   end if;
+
+   sys.htp.p('<table id="' || p_region.static_id || '_APEX_JQ_GRID"></table>');
+   sys.htp.p('<div id="' || p_region.static_id || '_APEX_JQ_GRID_PAGER"></div>');
+
+   l_onload_code := 'apex.jQuery("#' || p_region.static_id || '").apex_jqgrid({' || l_crlf ||
+      '   ' || apex_javascript.add_attribute('ajaxIdentifier', apex_plugin.get_ajax_identifier(), false, true) || l_crlf ||
+      '   columns: [' || l_crlf;
+
+   for x in 1 .. p_region.region_columns.count
+   loop
+      if x > 1
+      then
+         l_onload_code := l_onload_code || ',' || l_crlf;
+      end if;
+
+      l_onload_code := l_onload_code ||
+         '      {' || l_crlf ||
+         '         ' || apex_javascript.add_attribute('name', p_region.region_columns(x).name, false, false) || l_crlf ||
+         '      }';
+   end loop;
+
+   l_onload_code := l_onload_code || l_crlf ||
+      '   ]' || l_crlf ||
+      '});';
+      
+   apex_javascript.add_onload_code (
+      p_code => l_onload_code
+   );
+   
+   return l_render_result;
+   
+end render_apex_jqgrid;

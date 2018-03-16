@@ -1,0 +1,24 @@
+body .ui-jqgrid,
+.ui-jqgrid tr.ui-widget-content {
+    background: #F8F8F8;
+}
+.ui-jqgrid tr.jqgrow td {
+    /* First set a border color for table cells to be a transparent black */
+    border-color: rgba(0,0,0,.1);
+}
+body .ui-jqgrid .ui-state-default,
+.ui-jqgrid tr.ui-widget-content.ui-state-hover {
+    background-color: #FFF;
+}
+.ui-jqgrid tr.ui-widget-content.ui-state-highlight {
+    background: #F6F9FD;
+}
+.ui-jqgrid input {
+    /* jqgrid uses the content-box box-model for pagination inputs */
+    box-sizing: content-box;
+}
+.ui-jqgrid .ui-pg-button:hover {
+    /* set pagination buttons padding and background color for hover state */
+    padding: 0 1px;
+    background: #F8F8F8;
+}

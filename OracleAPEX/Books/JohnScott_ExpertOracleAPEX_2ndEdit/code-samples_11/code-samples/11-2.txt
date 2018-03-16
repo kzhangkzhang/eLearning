@@ -1,0 +1,20 @@
+function render_apex_jqgrid (
+   p_region              in apex_plugin.t_region,
+   p_plugin              in apex_plugin.t_plugin,
+   p_is_printer_friendly in boolean
+)
+
+   return apex_plugin.t_region_render_result
+
+is
+
+   l_render_result apex_plugin.t_region_render_result;
+   
+begin
+
+   sys.htp.p('<table id="jqGrid"></table>');
+   sys.htp.p('<div id="jqGridPager"></div>');
+   
+   return l_render_result;
+   
+end render_apex_jqgrid;

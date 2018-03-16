@@ -1,0 +1,35 @@
+function render_apex_jqgrid (
+   p_region              in apex_plugin.t_region,
+   p_plugin              in apex_plugin.t_plugin,
+   p_is_printer_friendly in boolean
+)
+
+   return apex_plugin.t_region_render_result
+
+is
+
+   l_render_result apex_plugin.t_region_render_result;
+   l_onload_code   varchar2(4000);
+   
+begin
+
+   if apex_application.g_debug 
+   then
+      apex_plugin_util.debug_region (
+         p_plugin => p_plugin,
+         p_region => p_region
+      );
+   end if;
+
+   sys.htp.p('<table id="' || p_region.static_id || '_APEX_JQ_GRID"></table>');
+   sys.htp.p('<div id="' || p_region.static_id || '_APEX_JQ_GRID_PAGER"></div>');
+
+   l_onload_code := 'apex.jQuery("#' || p_region.static_id || '").apex_jqgrid();';
+      
+   apex_javascript.add_onload_code (
+      p_code => l_onload_code
+   );
+   
+   return l_render_result;
+   
+end render_apex_jqgrid;

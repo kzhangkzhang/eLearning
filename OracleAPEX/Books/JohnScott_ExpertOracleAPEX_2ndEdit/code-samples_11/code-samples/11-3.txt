@@ -1,0 +1,37 @@
+$(document).ready(function () {
+    var data = [{
+         "ProductName":"Steeleye Stout",
+         "CategoryName":"Beverages",
+         "Country":"UK",
+         "Quantity":"65",
+         "Price":"1008.0000"
+      },
+      {
+         "ProductName":"Laughing Lumberjack Lager",
+         "CategoryName":"Beverages",
+         "Country":"USA",
+         "Quantity":"10",
+         "Price":"140.0000",
+      }];
+
+    var grid = $("#jqGrid").jqGrid({
+        datatype: "local",
+        colModel: [
+            {label: 'Category Name', name: 'CategoryName', width: 75},
+            {label: 'Product Name', name: 'ProductName', width: 90},
+            {label: 'Country', name: 'Country', width: 100},
+            {label: 'Price', name: 'Price', width: 80},
+            {label: 'Quantity', name: 'Quantity', width: 80}                   
+        ],
+        viewrecords: true,
+        width: 780,
+        height: 200,
+        rowNum: 30,
+        loadonce: true,
+        pager: "#jqGridPager"
+    });
+
+    data.forEach(function(row, idx) {
+        grid.jqGrid('addRowData', idx + 1, row);
+    });
+});

@@ -1,0 +1,53 @@
+(function($){
+    $.widget("ui.apex_jqgrid", {
+        options: {
+            ajaxIdentifier: null
+        },
+        _create: function() {
+            var uiw = this;
+            var colModel = [];
+
+            uiw.options.columns.forEach(function(column, colIdx) {
+                colModel.push({
+                    label: column.heading,
+                    name: 'col' + colIdx
+                });
+            });
+
+            var grid = $('#' + uiw.element.attr('id') + '_APEX_JQ_GRID').jqGrid({
+                datatype: "local",
+                colModel: colModel,
+                viewrecords: true,
+                width: 780,
+                height: 200,
+                rowNum: 30,
+                loadonce: true,
+                pager: "#" + uiw.element.attr('id') + "_APEX_JQ_GRID_PAGER"
+            });
+
+            apex.server.plugin(
+                uiw.options.ajaxIdentifier,
+                {},
+                {
+                    success: function(data) {
+                        var gridData = [];
+
+                        data.forEach(function(row, rowIdx) {
+                            var obj = {};
+
+                            row.forEach(function(col, colIdx) {
+                                obj['col' + colIdx] = col;
+                            });
+
+                            gridData.push(obj);
+                        });
+
+                        grid.jqGrid('setGridParam', { data: gridData});
+
+                        grid.trigger('reloadGrid');
+                    }
+                }
+            );
+        }
+    });
+})(apex.jQuery);

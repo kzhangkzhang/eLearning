@@ -1,0 +1,71 @@
+(function($){
+    $.widget("ui.apex_jqgrid", {
+        options: {
+            ajaxIdentifier: null
+        },
+        _create: function() {
+            var uiw = this;
+            var colModel = [];
+            var frozenCols = [];
+            var notFrozenCols = [];
+
+            uiw.options.columns.forEach(function(column, colIdx) {
+                var obj = {
+                        label: column.heading,
+                        name: 'col' + colIdx,
+                        width: 150
+                    };
+
+                if (column.frozen === 'Y') {
+                    obj.frozen = true;
+                    frozenCols.push(obj);
+                } else {
+                    obj.frozen = false;
+                    notFrozenCols.push(obj);
+                }
+
+                colModel = frozenCols.concat(notFrozenCols);
+            });
+
+            var grid = $('#' + uiw.element.attr('id') + '_APEX_JQ_GRID').jqGrid({
+                datatype: 'local',
+                shrinkToFit: false,
+                colModel: colModel,
+                viewrecords: true,
+                width: 780,
+                height: 200,
+                rowNum: 30,
+                loadonce: true,
+                pager: "#" + uiw.element.attr('id') + "_APEX_JQ_GRID_PAGER"
+            });
+
+            apex.server.plugin(
+                uiw.options.ajaxIdentifier,
+                {},
+                {
+                    success: function(data) {
+                        var gridData = [];
+
+                        data.forEach(function(row, rowIdx) {
+                            var obj = {};
+
+                            row.forEach(function(col, colIdx) {
+                                obj['col' + colIdx] = col;
+                            });
+
+                            gridData.push(obj);
+                        });
+
+                        grid.jqGrid('setGridParam', { data: gridData});
+
+                        grid.trigger('reloadGrid');
+
+                        if (frozenCols) {
+                            grid.jqGrid("setFrozenColumns");
+                        }
+                    }
+                }
+            );
+        }
+    });
+})(apex.jQuery);
