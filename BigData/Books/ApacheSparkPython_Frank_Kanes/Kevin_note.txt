@@ -1,1 +1,8 @@
+to source python 3.5:
+	call C:\Users\kzhang\AppData\Local\Enthought\Canopy\edm\envs\User\Scripts\Activate.bat
 
+The source code from github https://github.com/PacktPublishing/Frank-Kanes-Taming-Big-Data-with-Apache-Spark-and-Python
+is for Python2.7
+
+Later, I sent an email to Frank and he provide me the code for Python 3.5:
+	http://media.sundog-soft.com/Udemy/SparkCourse.zip
