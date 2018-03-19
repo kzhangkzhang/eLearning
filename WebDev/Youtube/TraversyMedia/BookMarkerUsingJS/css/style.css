@@ -1,0 +1,12 @@
+.card span a.btn {
+  width: 0;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 2.0s linear;
+}
+
+.card:hover span a.btn{
+  width: 80px;
+  visibility: visible;
+  opacity: 1;
+}

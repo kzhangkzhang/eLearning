@@ -90,10 +90,13 @@ function fetchBookmarks(){
       var name  = bookmarks[i].name;
       var url   = bookmarks[i].url;
 
+      // in below I have used ES6 template syntax ${url}. if you confused, you can switch back to 
+      // ' <a href="' + url + '" class="btn btn-success" target="_blank">Visit</a>' +
       bookmarksResults.innerHTML += '<div class="card card-block bg-light">'+
-                                    '<h3>' + name + 
-                                    ' <a href="' + url + '" class="btn btn-success" target="_blank">Visit</a>' +
-                                    ' <a onclick="deleteBookmark(\'' + url + '\')" href="#"' + ' class="btn btn-danger">Delete</a>' +
+                                    '<h3>' + 
+                                    '<span><a onclick="deleteBookmark(\'' + url + '\')" href="#"' + ' class="btn btn-danger">Delete</a></span> ' +
+                                     name + 
+                                    ` <a href="${url}" class="btn btn-success" target="_blank">Visit</a>` +
                                     '</h3></div>';
 
 
