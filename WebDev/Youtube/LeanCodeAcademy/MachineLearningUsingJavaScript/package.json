@@ -1,0 +1,15 @@
+{
+  "name": "machinelearningusingjavascript",
+  "version": "1.0.0",
+  "description": "Using JS for Machine Learning to figure out proper background color",
+  "main": "app.js",
+  "dependencies": {
+    "brain.js": "^1.1.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kevin Zhang",
+  "license": "ISC"
+}
